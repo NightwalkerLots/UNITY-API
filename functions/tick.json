@@ -1,6 +1,6 @@
 {
 	"values": [
-		"UAC/packages/welcome",
-		"UAC/modules/randomspawn"
+		"API/packages/welcome",
+		"API/ticking_function/0_tick"
 	]
 }
