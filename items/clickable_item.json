@@ -1,0 +1,52 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:item": {
+        "description": {
+            //This is how the item will be called in commands, not the name you see when hovering over it in your inventory
+            //For an example of how it'd be used /give @s uac:clickable_item
+            "identifier": "uac:clickable_item",
+            "category": "items"
+        },
+        "components": {
+            //This is the items name that will display when holding it or hovering over it
+            "minecraft:display_name": {
+                "value": "First line\nSecond line\n§bYou can add colors as well"
+            },
+            //The value changes how man items can be in one stack. Can't go over 64
+            "minecraft:max_stack_size": 64,
+            //Bool, determines if the item will have an enchantment glow or not without having an enchantment, like the nether star
+            "minecraft:foil": true,
+            "minecraft:hand_equipped": true,
+            //Changes the texture of the item. If it is a custom texture you will have to change the resource pack as well
+            "minecraft:icon": {
+                "texture": "diamond"
+            },
+            //This will make the item run the event "click" when you right click it in your hand
+            "minecraft:on_use": {
+                "on_use": {
+                    "event": "click"
+                }
+            },
+            "minecraft:cooldown": {
+                "category": "this_item_cooldown",
+                //Duration is counted in seconds, not ticks
+                "duration": 1
+            }
+        },
+        "events": {
+            "click": {
+                //This will make the swing animation run, making it look like its being used visually
+                "swing": {},
+                "click": {
+                    "run_command": {
+                        "command": [
+                            "say This is what runs when you click the item. This can be a normal command or run a function file. If you are familiar with events this can do more as well.",
+                            "effect @s levitation 1 1",
+                            "function *put example function path here*"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
