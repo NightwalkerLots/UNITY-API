@@ -1,4 +1,6 @@
-##Executes on the player when they join for the first time
+##This runs a timer which starts when a player first joins
+##The timer allows the welcome asset to be executed only after the player has time to spawn in
+##Once executed, the welcome asset does not execute on the same player again
 
 scoreboard players add @a welcome 1
 scoreboard objectives add welcome dummy welcome

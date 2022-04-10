@@ -8,6 +8,7 @@
 scoreboard players operation @a clmtoggle = clmdummy clmtoggle
 scoreboard players operation @a Deathef = BDXdummy Deathef
 scoreboard players operation @a dethtoggle = dethtoggledummy dethtoggle
+scoreboard players operation @a afkm = afkdummy afkm
 
 
 ##This will reset a player's dimension flag once they leave it

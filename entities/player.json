@@ -11,7 +11,6 @@
 		  "animate": [
 			"testing",
 			"death_effect",
-			"on_death",
 			"oneshot",
 			"home_x_negative",
 			"home_y_negative",
@@ -21,7 +20,6 @@
 			"home_z_positive",
 			"home_teleport_reset",
 			"spawn_points",
-			"anticbe",
 			"worldborder_pos",
 			"worldborder_neg",
 			"enchanted_helmet",
@@ -36,7 +34,7 @@
 			"is_gliding",
 			"timer",
 			"player_facing",
-      "afkDetector"
+      		"afkDetector"
 		  ]
 		},
 		"animations": {
@@ -44,7 +42,6 @@
 		  "afkDetector" : "controller.animation.afkDetector",
 		  "death_effect": "controller.animation.death_effect",
 		  "on_death": "controller.animation.on_death",
-		  "oneshot": "controller.animation.player.oneshot",
 		  "home_x_negative": "controller.animation.home_x_negative",
 		  "home_y_negative": "controller.animation.home_y_negative",
 		  "home_z_negative": "controller.animation.home_z_negative",
@@ -53,7 +50,6 @@
 		  "home_z_positive": "controller.animation.home_z_positive",
 		  "home_teleport_reset": "controller.animation.home_teleport_reset",
 		  "spawn_points": "controller.animation.spawn_points",
-		  "anticbe": "controller.animation.anticbe.execute_commands",
 		  "worldborder_pos": "controller.animation.border_control_pos",
 		  "worldborder_neg": "controller.animation.border_control_neg",
 		  "enchanted_helmet": "controller.animation.enchanted_helmet",
@@ -67,7 +63,7 @@
 		  "is_on_ground": "controller.animation.is_on_ground",
 		  "is_gliding": "controller.animation.is_gliding",
 		  "timer": "controller.animation.timer",
-      "player_facing": "controller.animation.player_facing"
+      	  "player_facing": "controller.animation.player_facing"
 		}
 	  },
 	  "component_groups": {
@@ -120,96 +116,21 @@
 		}
 	  },
 	  "components": {
-		"minecraft:interact": {
-		  "interactions": [
-			{
-			  "on_interact": {
-				"filters": {
-				  "all_of": [
-					{
-					  "test": "has_tag",
-					  "subject": "other",
-					  "value": "staffstatus"
-					},
-					{
-					  "test": "is_sneaking",
-					  "subject": "other",
-					  "operator": "!=",
-					  "value": true
-					},
-					{
-					  "test": "has_equipment",
-					  "domain": "hand",
-					  "subject": "other",
-					  "value": "minecraft:wooden_axe"
-					}
-				  ]
-				},
-				"event": "uac:display_main_stats"
-			  },
-			  "use_item": false,
-			  "interact_text": "See Stats"
-			},
-			{
-			  "on_interact": {
-				"filters": {
-				  "all_of": [
-					{
-					  "test": "has_tag",
-					  "operator": "!=",
-					  "value": "yeetus320"
-					}
-				  ]
-				},
-				"event": "uac:display_all_stats"
-			  },
-			  "use_item": false,
-			  "interact_text": "Player Interact"
-			}
-		  ]
-		},
 		"minecraft:environment_sensor": {
 		  "triggers": [
+			//sleeping test
 			{
-			  "filters": {
-				"all_of":[
-				  {
-					"test": "has_tag",
-					"subject": "self",
-					"operator": "!=",
-					"value":"staffstatus"
-				  }
+				"filters": [
+				{ "test": "is_sleeping", "value": true }
 				],
-				"any_of": [
-				  {
-					"test":"has_tag",
-					"subject":"self",
-					"operator":"==",
-					"value":"Ban"
-				  },
-				  {
-					"test":"has_tag",
-					"subject":"self",
-					"operator":"==",
-					"value":"PermBan"
-				  }
-				]
-			  },
-			  "event":"uac:ban_main"
-        },
-      //sleeping test
-      {
-        "filters": [
-          { "test": "is_sleeping", "value": true }
-        ],
-        "event": "minecraft:player_sleep"
-      },
-      {
-        "filters": [
-          { "test": "is_sleeping", "value": false }
-        ],
-        "event": "minecraft:player_awake"
-      },
+				"event": "minecraft:player_sleep"
+			},
+			{
+				"filters": [
+				{ "test": "is_sleeping", "value": false }
+				],
+				"event": "minecraft:player_awake"
+			},
 			// detect for player dimension
 			{
 			  "filters": {
@@ -225,19 +146,6 @@
 				"test": "is_biome", "value" : "the_end" 
 			  },
 			  "event":"uac:in_end"
-			},
-			{
-			  "filters": {
-				"any_of": [
-				  {
-					"test":"has_tag",
-					"subject":"self",
-					"operator":"==",
-					"value":"theif"
-				  }
-				]
-			  },
-			  "event":"uac:smooth_brain"
 			},
 			{
 			  "filters": {
@@ -968,25 +876,6 @@
 			  "event": "minecraft:no_levitation"
 			},
 			{
-			  "filters": {
-				"any_of": [
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:torch"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lantern"
-				  }
-				]
-			  },
-			  "event": "uac:torchlight"
-			},
-			{
 				"filters": {
 					"test": "has_equipment",
 					"domain": "any",
@@ -1020,858 +909,6 @@
 				]
 			  },
 			  "event": "minecraft:trigger_raid"
-			},
-			{
-			  "filters": {
-				"all_of": [
-				  {
-					"test": "has_tag",
-					"subject": "self",
-					"operator": "!=",
-					"value": "staffstatus"
-				  }
-				],
-				"any_of": [
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:pufferfish_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:salmon_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:tropical_fish_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cod_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:powder_snow_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:axolotl_bucket"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bee_nest"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:beehive"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:movingBlock"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:command_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:chain_command_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:repeating_command_block"
-				  }
-				]
-			  },
-			  "event": "uac:cbe_flag"
-			},
-			{
-			  "filters": {
-				"all_of": [
-				  {
-					"test": "has_tag",
-					"subject": "self",
-					"operator": "!=",
-					"value": "staffstatus"
-				  }
-				],
-				"any_of": [
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:pumpkin_stem"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:melon_stem"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:flowing_lava"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lava"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:flowing_water"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:water"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_redstone_lamp"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:pistonarmcollision"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:tripwire"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:unpowered_comparator"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:powered_comparator"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:fire"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_furnace"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:standing_sign"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:wall_sign"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_redstone_ore"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:unlit_redstone_torch"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:portal"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:daylight_detector_inverted"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:unpowered_repeater"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:powered_repeater"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:invisiblebedrock"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:frosted_ice"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:end_gateway"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:end_portal"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:end_portal_frame"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:structure_void"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:chalkboard"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:movingblock"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bubble_column"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bamboo_sapling"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_smoker"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:sweet_berry_bush"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lava_cauldron"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:jigsaw"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_blast_furnace"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:light_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:stickypistonarmcollision"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:soul_fire"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:lit_deepslate_redstone_ore"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:camera"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:allow"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:deny"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bedrock"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:barrier"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:border_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:border"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:structure_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:command_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:chain_command_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:repeating_command_block"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cave_vines_body_with_verries"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cave_head_body_with_verries"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:glowingobsidian"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:glow_stick"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:netherreactor"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:info_update"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:info_update2"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:zombie_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:creeper_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:skeleton_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:spider_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:zombie_pigman_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:slime_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:enderman_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:silverfish_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cave_spider_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:ghast_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:magma_cube_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:blaze_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:zombie_villager_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:witch_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:stray_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:husk_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:wither_skeleton_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:guardian_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:elder_guardian_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:shulker_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:endermite_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:vindicator_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:phantom_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:ravager_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:evoker_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:vex_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:drowned_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:piglin_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:hoglin_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:zoglin_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:piglin_brute_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:chicken_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cow_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:pig_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:sheep_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:wolf_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:villager_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:mooshroom_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:squid_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:rabbit_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bat_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:ocelot_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:horse_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:donkey_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:mule_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:skeleton_horse_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:zombie_horse_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:polar_bear_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:llama_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:parrot_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:dolphin_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:turtle_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cat_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:pufferfish_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:salmon_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:tropical_fish_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:cod_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:panda_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:wandering_trader_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:fox_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:bee_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:strider_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:goat_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:axolotl_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:glow_squid_spawn_egg"
-				  },
-				  {
-					"test": "has_equipment",
-					"domain": "any",
-					"operator": "==",
-					"value": "minecraft:npc_spawn_egg"
-				  }
-				]
-			  },
-			  "event": "uac:illegal_items"
 			}
 		  ]
 		},
@@ -1977,845 +1014,688 @@
 		"minecraft:scaffolding_climber": {},
 		"minecraft:damage_sensor": {
 		  "triggers": [
-			{
-			  "on_damage": {
-          "filters": [
-            {
-            "test": "has_tag",
-            "operator": "==",
-            "subject": "self",
-            "value": "godmode"
-            }
-          ],
-				  "cause": "all"
-			  },
-			  "deals_damage": false
-      },
-      //oneshot framework given to UAC by balloon
-			//Damage Sensor Channel in this discord -> discord.gg/BDeDTefE47
-			{
-        "on_damage": {
-          "event": "uac:oneshot_flag_sharp",
-          "target": "other",
-          "filters": {
-            "all_of": [
-              {
-                "test": "has_tag",
-                "value": "can_oneshot"
-              },
-              {
-                "test": "is_family",
-                "operator": "==",
-                "subject": "other",
-                "value": "player"
-              },
-              {
-                "test": "has_damage",
-                "value": "fatal"
-              }
-            ]
-          }
-        },
-        "deals_damage": false,
-        "cause": "entity_attack"
-      },
-		{
-        "on_damage": {
-          "event": "uac:oneshot_flag_thorns",
-          "target": "self",
-          "filters": {
-            "all_of": [
-              {
-                "test": "has_tag",
-                "value": "can_oneshot"
-              },
-              {
-                "test": "is_family",
-                "operator": "==",
-                "subject": "other",
-                "value": "player"
-              },
-              {
-                "test": "has_damage",
-                "value": "fatal"
-              }
-            ]
-          }
-        },
-        "deals_damage": false,
-        "cause": "thorns"
-      },
-			{
-			  "on_damage": {
-				"filters": {
-				  "all_of": [
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "value": "attack"
+				{
+					"on_damage": {
+						"filters": [
+							{
+								"test": "has_tag",
+								"operator": "==",
+								"subject": "self",
+								"value": "godmode"
+							}
+						],
+						"cause": "all"
 					},
-					{
-					  "test": "is_family",
-					  "operator": "==",
-					  "subject": "other",
-					  "value": "player"
-					},
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "subject": "self",
-					  "value": "fatal"
-					}
-				  ]
+					"deals_damage": false
 				},
-				"event": "uac:on_death_by_player"
-			  }
-			},
-			{
-			  "on_damage": {
-				"filters": {
-				  "all_of": [
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "value": "projectile"
-					},
-					{
-					  "test": "is_family",
-					  "operator": "==",
-					  "subject": "other",
-					  "value": "player"
-					},
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "subject": "self",
-					  "value": "fatal"
+				{
+					"on_damage": {
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"value": "attack"
+								},
+								{
+									"test": "is_family",
+									"operator": "==",
+									"subject": "other",
+									"value": "player"
+								},
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"subject": "self",
+									"value": "fatal"
+								}
+							]
+						},
+					"event": "uac:on_death_by_player"
 					}
-				  ]
 				},
-				"event": "uac:on_death_by_player"
-			  }
-            },
-			{
-			  "on_damage": {
-				"filters": {
-				  "all_of": [
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "value": "magic"
-					},
-					{
-					  "test": "is_family",
-					  "operator": "==",
-					  "subject": "other",
-					  "value": "player"
-					},
-					{
-					  "test": "has_damage",
-					  "operator": "==",
-					  "subject": "self",
-					  "value": "fatal"
+				{
+					"on_damage": {
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"value": "projectile"
+								},
+								{
+									"test": "is_family",
+									"operator": "==",
+									"subject": "other",
+									"value": "player"
+								},
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"subject": "self",
+									"value": "fatal"
+								}
+							]
+						},
+					"event": "uac:on_death_by_player"
 					}
-				  ]
 				},
-				"event": "uac:on_death_by_player"
-			  }
-			},
-			// Potentially used for combat logging - credit to Herobrine64 for the idea
-		{
-        "on_damage": {
-          "filters": {
-            "all_of": [
-              {
-                "test": "is_family",
-                "operator": "==",
-                "subject": "other",
-                "value": "player"
-              }
-            ]
-          },
-          "event": "uac:incombat",
-          "target": "self"
-		  },
-		  "cause": "entity_attack"
-        }
-		  ]
-		},
-		  "minecraft:npc": {//This will allow the player to have the npc components to have dialogue
+				{
+					"on_damage": {
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"value": "magic"
+								},
+								{
+									"test": "is_family",
+									"operator": "==",
+									"subject": "other",
+									"value": "player"
+								},
+								{
+									"test": "has_damage",
+									"operator": "==",
+									"subject": "self",
+									"value": "fatal"
+								}
+							]
+						},
+					"event": "uac:on_death_by_player"
+					}
+				},
+				// Potentially used for combat logging - credit to Herobrine64 for the idea
+				{
+					"on_damage": {
+						"filters": {
+							"all_of": [
+								{
+									"test": "is_family",
+									"operator": "==",
+									"subject": "other",
+									"value": "player"
+								}
+							]
+						},
+						"event": "uac:incombat",
+						"target": "self"
+					},
+					"cause": "entity_attack"
+				}
+			]	
 		}
 	  },
 	  "events": {
-		"uac:illegal_items": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s[tag=!staffstatus,scores={UOIM=1}] ~~~ replaceitem entity @s slot.weapon.mainhand 0 air",
-			  "execute @s[tag=!staffstatus,scores={UOIM=1}] ~~~ function API/asset/clearspawneggasset",
-			  "execute @s[tag=!staffstatus] ~~~ execute @s[scores={UOIM=1}] ~~~ function API/asset/illegalitemkickmsg",
-			  "execute @s[tag=!staffstatus] ~~~ execute @s[scores={UOIM=1}] ~~~ function API/asset/illegalitemwarn"
-			]
-		  }
-		},
-		"uac:in_nether":{
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s in_nether 1"
-			]
-		  }
-		},
-		"uac:incombat":{
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s in_combat 1",
-			  "scoreboard players set @s combat_timer 600"
-			]
-		  }
-		},
-		"uac:in_end":{
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s in_end 1"
-			]
-		  }
-    },
-    "minecraft:player_awake":{
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s is_sleeping 0"
-			]
-		}
-    },
-    "minecraft:player_sleep":{
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s is_sleeping 1"
-			]
-		}
-	},
-	"uac:trident_true":{
-		"run_command": {
-		  "target": "self",
-		  "command": [
-			"tag @s add has_trident"
-		  ]
+			"uac:in_nether":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s in_nether 1"
+					]
+				}
+			},
+			"uac:incombat":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s in_combat 1",
+						"scoreboard players set @s combat_timer 600"
+					]
+				}
+			},
+			"uac:in_end":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s in_end 1"
+					]
+				}
+			},
+			"minecraft:player_awake":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s is_sleeping 0"
+					]
+				}
+			},
+			"minecraft:player_sleep":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s is_sleeping 1"
+					]
+				}
+			},
+			"uac:trident_true":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"tag @s add has_trident"
+					]
+				}
+			},
+			"uac:trident_false":{
+				"run_command": {
+					"target": "self",
+					"command": [
+						"tag @s remove has_trident"
+					]
+				}
+			},
+			//A test event to see if they have the proper experimental feature enabled for animation controllers to work
+			"uac:test_experimental": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard objectives add has_xx dummy",
+						"scoreboard players set @s has_xx 1"
+					]
+				}
+			},
+			"uac:ban_main": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"execute @s ~~~ placeholder"
+					]
+				},
+				"add": {
+					"component_groups": [
+					"uac:ban"
+					]
+				}
+			}, 
+			"uac:on_death_by_player": {
+				"run_command": {
+					"target": "other",
+					"command": [
+						"scoreboard players add @s kills 1",
+						"scoreboard players add @s killstreak 1",
+						"execute @s[scores={killstreak=10..}] ~~~ function API/asset/killstreak-msg"
+					]
+				}
+			},
+			"minecraft:spectate": {
+				"add": {
+					"component_groups": [
+						"minecraft:spectate"
+					]
+				}
+			},
+			"minecraft:no_spectate": {
+				"add": {
+					"component_groups": [
+						"minecraft:no_spectate"
+					]
+				}
+			},
+			"minecraft:no_netherite_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethhelm 0"
+					]
+				}
+			},
+			"minecraft:netherite_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethhelm 1"
+					]
+				}
+			},
+			"minecraft:no_netherite_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethchest 0"
+					]
+				}
+			},
+			"minecraft:netherite_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethchest 1"
+					]
+				}
+			},
+			"minecraft:no_netherite_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethlegs 0"
+					]
+				}
+			},
+			"minecraft:netherite_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethlegs 1"
+					]
+				}
+			},
+			"minecraft:no_netherite_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethboots 0"
+					]
+				}
+			},
+			"minecraft:netherite_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s nethboots 1"
+					]
+				}
+			},
+			"minecraft:no_diamond_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diahelm 0"
+					]
+				}
+			},
+			"minecraft:diamond_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diahelm 1"
+					]
+				}
+			},
+			"minecraft:no_diamond_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diachest 0"
+					]
+				}
+			},
+			"minecraft:diamond_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diachest 1"
+					]
+				}
+			},
+			"minecraft:no_diamond_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s dialegs 0"
+					]
+				}
+			},
+			"minecraft:diamond_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s dialegs 1"
+					]
+				}
+			},
+			"minecraft:no_diamond_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diaboots 0"
+					]
+				}
+			},
+			"minecraft:diamond_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s diaboots 1"
+					]
+				}
+			},
+			"minecraft:no_golden_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldhelm 0"
+					]
+				}
+			},
+			"minecraft:golden_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldhelm 1"
+					]
+				}
+			},
+			"minecraft:no_golden_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldchest 0"
+					]
+				}
+			},
+			"minecraft:golden_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldchest 1"
+					]
+				}
+			},
+			"minecraft:no_golden_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldlegs 0"
+					]
+				}
+			},
+			"minecraft:golden_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldlegs 1"
+					]
+				}
+			},
+			"minecraft:no_golden_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldboots 0"
+					]
+				}
+			},
+			"minecraft:golden_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s goldboots 1"
+					]
+				}
+			},
+			"minecraft:no_iron_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironhelm 0"
+					]
+				}
+			},
+			"minecraft:iron_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironhelm 1"
+					]
+				}
+			},
+			"minecraft:no_iron_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironchest 0"
+					]
+				}
+			},
+			"minecraft:iron_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironchest 1"
+					]
+				}
+			},
+			"minecraft:no_iron_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironlegs 0"
+					]
+				}
+			},
+			"minecraft:iron_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironlegs 1"
+					]
+				}
+			},
+			"minecraft:no_iron_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironboots 0"
+					]
+				}
+			},
+			"minecraft:iron_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s ironboots 1"
+					]
+				}
+			},
+			"minecraft:no_chainmail_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainhelm 0"
+					]
+				}
+			},
+			"minecraft:chainmail_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainhelm 1"
+					]
+				}
+			},
+			"minecraft:no_chainmail_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainchest 0"
+					]
+				}
+			},
+			"minecraft:chainmail_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainchest 1"
+					]
+				}
+			},
+			"minecraft:no_chainmail_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainlegs 0"
+					]
+				}
+			},
+			"minecraft:chainmail_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainlegs 1"
+					]
+				}
+			},
+			"minecraft:chainmail_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainboots 1"
+					]
+				}
+			},
+			"minecraft:no_chainmail_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s chainboots 0"
+					]
+				}
+			},
+			"minecraft:no_leather_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathhelm 0"
+					]
+				}
+			},
+			"minecraft:leather_helmet": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathhelm 1"
+					]
+				}
+			},
+			"minecraft:no_leather_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathchest 0"
+					]
+				}
+			},
+			"minecraft:leather_chestplate": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathchest 1"
+					]
+				}
+			},
+			"minecraft:no_leather_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathlegs 0"
+					]
+				}
+			},
+			"minecraft:leather_leggings": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathlegs 1"
+					]
+				}
+			},
+			"minecraft:no_leather_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathboots 0"
+					]
+				}
+			},
+			"minecraft:no_elytra": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s elytra 0"
+					]
+				}
+			},
+			"minecraft:elytra": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s elytra 1"
+					]
+				}
+			},
+			"minecraft:turtlehelm": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s turthelm 1"
+					]
+				}
+			},
+			"minecraft:no_turtlehelm": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s turthelm 0"
+					]
+				}
+			},
+			"minecraft:leather_boots": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"scoreboard players set @s leathboots 1"
+					]
+				}
+			},
+			"minecraft:has_levitation": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"tag @s add Effect:Levitation"
+					]
+				}
+			},
+			"minecraft:no_levitation": {
+				"run_command": {
+					"target": "self",
+					"command": [
+						"tag @s remove Effect:Levitation"
+					]
+				}
+			},
+			"minecraft:gain_bad_omen": {
+				"add": {
+					"component_groups": [
+						"minecraft:add_bad_omen"
+					]
+				}
+			},
+			"minecraft:clear_add_bad_omen": {
+				"remove": {
+					"component_groups": [
+						"minecraft:add_bad_omen"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"minecraft:clear_bad_omen_spell_effect"
+					]
+				}
+			},
+			"minecraft:trigger_raid": {
+				"add": {
+					"component_groups": [ "minecraft:raid_trigger" ]
+				}
+			},
+			"minecraft:remove_raid_trigger": {
+				"remove": {
+					"component_groups": [
+						"minecraft:raid_trigger"
+					]
+				}
+			}
 	  	}
-	},
-	  "uac:trident_false":{
-		"run_command": {
-		  "target": "self",
-		  "command": [
-			"tag @s remove has_trident"
-		  ]
-	  	}
-  	},
-		"uac:torchlight": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "function test/test",
-			  "execute @s[scores={hastorch=0}] ~~~ scoreboard players set @s hastorch 1"
-			]
-		  }
-		},
-		//A test event to see if they have the proper experimental feature enabled for animation controllers to work
-		"uac:test_experimental": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard objectives add has_xx dummy",
-			  "scoreboard players set @s has_xx 1"
-			]
-		  }
-		},
-		"uac:cbe_flag": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s[scores={acmtoggle=1}] ~~~ replaceitem entity @s slot.weapon.mainhand 0 air",
-			  "execute @s[scores={acmtoggle=1}] ~~~ gamemode s @a[tag=!staffstatus]",
-			  "execute @s[scores={acmtoggle=1}] ~~~ kill @e[type=!player,r=40]",
-			  "execute @s[scores={acmtoggle=1}] ~~~ tag @a remove PermBan",
-			  "execute @s[scores={acmtoggle=1}] ~~~ function API/asset/cbeitemwarn",
-			  "execute @s[scores={acmtoggle=1}] ~~~ effect @s clear",
-			  "execute @s[scores={acmtoggle=1}] ~~~ function API/echestwipe",
-			  "execute @s[scores={acmtoggle=1}] ~~~ tag @s add cbesoft"
-			]
-		  }
-		},
-		"uac:oneshot_flag_sharp": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s[scores=osmtoggle=1] ~~~ function API/asset/oneshot_sharp_asset"
-			]
-		  }
-		},
-		"uac:oneshot_flag_thorns": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s[scores=osmtoggle=1] ~~~ function API/asset/oneshot_thorns_asset"
-			]
-		  }
-		},
-		"uac:display_main_stats": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "function API/stats"
-			]
-		  }
-		},
-		"uac:display_all_stats": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "function API/testing"
-			]
-		  }
-		}, 
-		"uac:ban_main": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s ~~~ function API/asset/ban_disconnect_message"
-			]
-		  },
-		  "add": {
-			"component_groups": [
-			  "uac:ban"
-			]
-		  }
-		}, 
-		"uac:ban_soft": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "clear @s"
-			]
-		  },
-		  "add": {
-			"component_groups": [
-			  "uac:ban"
-			]
-		  }
-    },
-    "uac:ban_soft_remove": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  " "
-			]
-		  },
-		  "remove": {
-			"component_groups": [
-			  "uac:ban"
-			]
-		  }
-		},
-		"uac:smooth_brain": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "execute @s ~~~ function API/asset/ban_disconnect_message"
-			]
-		  }
-		},
-		"uac:on_death_by_player": {
-		  "run_command": {
-			"target": "other",
-			"command": [
-			  "scoreboard players add @s kills 1",
-			  "scoreboard players add @s killstreak 1",
-			  "execute @s[scores={killstreak=10..}] ~~~ function API/asset/killstreak-msg"
-			]
-		  }
-		},
-		"minecraft:spectate": {
-		  "add": {
-			"component_groups": [
-			  "minecraft:spectate"
-			]
-		  }
-		},
-		"minecraft:no_spectate": {
-		  "add": {
-			"component_groups": [
-			  "minecraft:no_spectate"
-			]
-		  }
-		},
-		"minecraft:no_netherite_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethhelm 0"
-			]
-		  }
-		},
-		"minecraft:netherite_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethhelm 1"
-			]
-		  }
-		},
-		"minecraft:no_netherite_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethchest 0"
-			]
-		  }
-		},
-		"minecraft:netherite_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethchest 1"
-			]
-		  }
-		},
-		"minecraft:no_netherite_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethlegs 0"
-			]
-		  }
-		},
-		"minecraft:netherite_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethlegs 1"
-			]
-		  }
-		},
-		"minecraft:no_netherite_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethboots 0"
-			]
-		  }
-		},
-		"minecraft:netherite_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s nethboots 1"
-			]
-		  }
-		},
-		"minecraft:no_diamond_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diahelm 0"
-			]
-		  }
-		},
-		"minecraft:diamond_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diahelm 1"
-			]
-		  }
-		},
-		"minecraft:no_diamond_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diachest 0"
-			]
-		  }
-		},
-		"minecraft:diamond_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diachest 1"
-			]
-		  }
-		},
-		"minecraft:no_diamond_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s dialegs 0"
-			]
-		  }
-		},
-		"minecraft:diamond_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s dialegs 1"
-			]
-		  }
-		},
-		"minecraft:no_diamond_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diaboots 0"
-			]
-		  }
-		},
-		"minecraft:diamond_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s diaboots 1"
-			]
-		  }
-		},
-		"minecraft:no_golden_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldhelm 0"
-			]
-		  }
-		},
-		"minecraft:golden_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldhelm 1"
-			]
-		  }
-		},
-		"minecraft:no_golden_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldchest 0"
-			]
-		  }
-		},
-		"minecraft:golden_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldchest 1"
-			]
-		  }
-		},
-		"minecraft:no_golden_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldlegs 0"
-			]
-		  }
-		},
-		"minecraft:golden_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldlegs 1"
-			]
-		  }
-		},
-		"minecraft:no_golden_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldboots 0"
-			]
-		  }
-		},
-		"minecraft:golden_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s goldboots 1"
-			]
-		  }
-		},
-		"minecraft:no_iron_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironhelm 0"
-			]
-		  }
-		},
-		"minecraft:iron_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironhelm 1"
-			]
-		  }
-		},
-		"minecraft:no_iron_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironchest 0"
-			]
-		  }
-		},
-		"minecraft:iron_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironchest 1"
-			]
-		  }
-		},
-		"minecraft:no_iron_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironlegs 0"
-			]
-		  }
-		},
-		"minecraft:iron_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironlegs 1"
-			]
-		  }
-		},
-		"minecraft:no_iron_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironboots 0"
-			]
-		  }
-		},
-		"minecraft:iron_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s ironboots 1"
-			]
-		  }
-		},
-		"minecraft:no_chainmail_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainhelm 0"
-			]
-		  }
-		},
-		"minecraft:chainmail_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainhelm 1"
-			]
-		  }
-		},
-		"minecraft:no_chainmail_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainchest 0"
-			]
-		  }
-		},
-		"minecraft:chainmail_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainchest 1"
-			]
-		  }
-		},
-		"minecraft:no_chainmail_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainlegs 0"
-			]
-		  }
-		},
-		"minecraft:chainmail_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainlegs 1"
-			]
-		  }
-		},
-		"minecraft:chainmail_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainboots 1"
-			]
-		  }
-		},
-		"minecraft:no_chainmail_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s chainboots 0"
-			]
-		  }
-		},
-		"minecraft:no_leather_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathhelm 0"
-			]
-		  }
-		},
-		"minecraft:leather_helmet": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathhelm 1"
-			]
-		  }
-		},
-		"minecraft:no_leather_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathchest 0"
-			]
-		  }
-		},
-		"minecraft:leather_chestplate": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathchest 1"
-			]
-		  }
-		},
-		"minecraft:no_leather_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathlegs 0"
-			]
-		  }
-		},
-		"minecraft:leather_leggings": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathlegs 1"
-			]
-		  }
-		},
-		"minecraft:no_leather_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathboots 0"
-			]
-		  }
-    },
-    "minecraft:no_elytra": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s elytra 0"
-			]
-		  }
-    },
-    "minecraft:elytra": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s elytra 1"
-			]
-		  }
-    },
-    "minecraft:turtlehelm": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s turthelm 1"
-			]
-		  }
-    },
-    "minecraft:no_turtlehelm": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s turthelm 0"
-			]
-		  }
-		},
-		"minecraft:leather_boots": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "scoreboard players set @s leathboots 1"
-			]
-		  }
-		},
-		"minecraft:has_levitation": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "tag @s add Effect:Levitation"
-			]
-		  }
-		},
-		"minecraft:no_levitation": {
-		  "run_command": {
-			"target": "self",
-			"command": [
-			  "tag @s remove Effect:Levitation"
-			]
-		  }
-		},
-		"minecraft:gain_bad_omen": {
-		  "add": {
-			"component_groups": [
-			  "minecraft:add_bad_omen"
-			]
-		  }
-		},
-		"minecraft:clear_add_bad_omen": {
-		  "remove": {
-			"component_groups": [
-			  "minecraft:add_bad_omen"
-			]
-		  },
-		  "add": {
-			"component_groups": [
-			  "minecraft:clear_bad_omen_spell_effect"
-			]
-		  }
-		},
-		"minecraft:trigger_raid": {
-		  "add": {
-			"component_groups": [ "minecraft:raid_trigger" ]
-		  }
-		},
-		"minecraft:remove_raid_trigger": {
-		  "remove": {
-			"component_groups": [
-			  "minecraft:raid_trigger"
-			]
-		  }
-		}
-	  }
 	}
-  }
+}
   

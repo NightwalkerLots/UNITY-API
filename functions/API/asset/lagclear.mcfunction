@@ -1,3 +1,7 @@
+##this is a asset file ran by the manaul lag clear command
+##having the real command run another function with the real code is a fix for when a function will now show
+##in the in-game command autocomplete. Which was the case for this one
+
 gamerule doentitydrops false
 difficulty peaceful
 kill @e[type=minecraft:arrow]

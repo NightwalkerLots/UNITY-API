@@ -1,3 +1,7 @@
+##This is the initiation file which is ran on every player when they join for the first time
+##It is responsible for creating objectives when the world is first created, 
+##and assigning default values for those objectives if needed
+
 #Test for needed experimental features
 scoreboard objectives add has_xx dummy
 scoreboard objectives add in_nether dummy
@@ -66,6 +70,11 @@ scoreboard players set @s turthelm 0
 #Death Effect Toggle
 scoreboard objectives add Deathef dummy Deathef
 scoreboard objectives add dethtoggle dummy dethtoggle
+
+#Player afk detection
+scoreboard objectives add afkm dummy
+scoreboard objectives set @s afkm 0
+scoreboard objectives add afktimer dummy
 
 #Death Effect Default Value
 scoreboard players set @s Deathef 1
@@ -182,6 +191,7 @@ scoreboard objectives add teleporting dummy teleporting
 scoreboard objectives add Player_Facing dummy Player_Facing
 function API/asset/toggle_sync
 
+##This checks to see what experimental features are enabled
 #If experimental features are on, set to true
 event entity @a uac:test_experimental
 tellraw @s[scores={has_xx=0}] {"rawtext":[{"text":"§¶§cUNITY API §b► §6Holiday Features §7: §cNot Enabled §7|| §cSome features may not work"}]}

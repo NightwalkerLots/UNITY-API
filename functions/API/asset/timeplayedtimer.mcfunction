@@ -1,6 +1,7 @@
-//This is not meant to be seen
+##This is a API asset responsible for keeping track of player's time played
+##Not recommended to edit
 
-##(Note: tpmtoggle is not needed due to it being already executed from the first location)
+#created by catastrophy
 
 ##Original Tick <- This will help keep track of the timer
 scoreboard players add @s timeplayedtick 1

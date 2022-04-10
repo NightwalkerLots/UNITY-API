@@ -1,0 +1,127 @@
+{
+    //This number should NOT be changed in any file. 1.16.100 allows you to use experimental modes, such as running commands from events.
+    //This number can not be higher than the most up to date Minecraft version, do not make up your own numbers
+    "format_version": "1.16.100",
+    "minecraft:entity": {  //DO NOT CHANGE, this is how Minecraft recognizes the file as an entity
+        "description": { //This just defines the description
+            "identifier": "minecraft:bat", //This is the entity's identifier
+            "is_spawnable": true, //Bool, decides if the entity will spawn naturally 
+            "is_summonable": true, //Bool, decides if the entity can be summoned
+            "is_experimental": false //Bool, decides if the entity is experimental and needs the modes enabled to work
+        },
+        "components": { //Starts the components, this is different from component groups
+            "minecraft:health": { //This is the entities health component
+                "value": 10, //Value the entity stars with 
+                "max": 10 //Max health value the entity can have. This can also be defined as "min"
+            },
+            "minecraft:collision_box": { //This is the area the entity can be interacted with, these are the default values for the player
+                "height": 0.6, //Height of the collision box
+                "width": 1.8 //Width of the collision box
+            },
+            "minecraft:movement": { //This is how fast the entity will move
+                "value": 0 //Its changed to 0 in here to stop it from moving at all
+            },
+            "minecraft:type_family": { //This component sets the entity's family types, these can be used to run commands like "/execute @e[family=custom_family] ..."
+                "family": [ "mob","custom_family" ] //There are native Minecraft family types, but you can also make your own
+            },
+            "minecraft:pushable": { //This decides if the entity will be pushable or not
+                "is_pushable": false, //Bool, tells if the entity is pushable by other entities, explosions, etc
+                "is_pushable_by_piston": false //Bool, tells if the entity is pushable by pistons
+            },
+            "minecraft:physics": {
+                "has_gravity": true //Bool, makes the entity have gravity or not
+            },
+            "minecraft:interact": { //This is the entity's interact component
+                "interactions": [
+                    {
+                        "on_interact": {
+                            "event": "right_click", //This string is the events name that will be run when this interactin occurs
+                            "filters": { //The filter makes the game look for specific requirements to run this interaction successfully
+                                "all_of": [ //Can also be defined as "any_of", this will change it so if one condition is met the event will trigger instead of requiring all the conditions
+                                    {
+                                        "test": "is_family", //Tests what family the subject is
+                                        "subject": "other", //The target for the test
+                                        "value": "player" //What family type you're looking for
+                                    },
+                                    {
+                                        "test": "has_equipment", //Tests the equipment, items, the player has
+                                        "domain": "any", //Domain is the are that is being tested
+                                        "subject": "other", //The target for the test
+                                        "value": "minecraft:dirt", //The item that is being tested for
+                                        "operator": "!=" //This works like a simple true/false operator, "!=" meaning false and "==" meaning true
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "on_interact": {
+                            "event": "right_click_with_item", //This string is the events name that will be run when this interactin occurs
+                            "filters": { //The filter makes the game look for specific requirements to run this interaction successfully
+                                "all_of": [ //Can also be defined as "any_of", this will change it so if one condition is met the event will trigger instead of requiring all the conditions
+                                    {
+                                        "test": "is_family", //Tests what family the subject is
+                                        "subject": "other", //The target for the test
+                                        "value": "player" //What family type you're looking for
+                                    },
+                                    {
+                                        "test": "has_equipment", //Tests the equipment, items, the player has
+                                        "domain": "any", //Domain is the are that is being tested
+                                        "subject": "other", //The target for the test
+                                        "value": "minecraft:dirt", //The item that is being tested for
+                                        "operator": "==" //This works like a simple true/false operator, "!=" meaning false and "==" meaning true
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "on_damage": {
+                            "event": "left_click", //Names what event will be trigger if this interaction is true
+                            "filter": {
+                                "all_of": [ //Can also be defined as "any_of", this will change it so if one condition is met the event will trigger instead of requiring all the conditions
+                                    {
+                                        "test": "is_family", //Tests what family the subject is
+                                        "subject": "damager", //The target for the test
+                                        "value": "player" //What family type you're looking for
+                                    }
+                                ]
+                            }
+                        },
+                        "deals_damage": false //Bool 
+                    }
+                ]
+            }
+        },
+        "events": {
+            "right_click": { //This is the event name which is being called from the interact component
+                "run_command": {
+                    "command": [
+                        "say Right click!" //Command that is run from the event, works like a command block
+                    ],
+                    "target": "other" //Targets the "other" entity involved in the interaction, which will be the player, that was defined in the interaction sensor
+                }
+            },
+            "right_click_with_item": { //This is the event name which is being called from the interact component
+                "run_command": {
+                    "command": [
+                        "say Right click with dirt!" //Command that is run from the event, works like a command block
+                    ],
+                    "target": "other" //Targets the "other" entity involved in the interaction, which will be the player, that was defined in the interaction sensor
+                }
+            },
+            "left_click": { //This is the event name which is being called from the damage sensor component
+                "run_command": {
+                    "command": [
+                        "say Left click!" //Command that is run from the event, works like a command block
+                    ],
+                    "target": "other" //Targets the "other" entity involved in the interaction, which will be the player, that was defined in the interaction sensor
+                }
+            }
+        }
+    }
+}

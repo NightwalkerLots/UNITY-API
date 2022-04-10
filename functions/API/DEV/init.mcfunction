@@ -1,3 +1,5 @@
+##this is a dev command which can be used to restart the process that runs the init functions
+
 scoreboard objectives add has_xx dummy
 scoreboard players set @s has_xx 0
 execute @s ~~~ time set 1900
@@ -10,6 +12,3 @@ event entity @a uac:test_experimental
 
 tellraw @a[tag=staffstatus] {"rawtext":[{"text":"§¶§cUNITY API §b► The §2Developer Debug Init §bhas been used by §d"},{"selector":"@s"}]}
 
-
-#This hides this from the in-game function command directory
-hide

@@ -1,3 +1,6 @@
+##this function can be used to clear a player's ender chest
+##this isn't used in the API, but is a good tool to use just in-case
+
 replaceitem entity @s slot.enderchest 0 air
 replaceitem entity @s slot.enderchest 1 air
 replaceitem entity @s slot.enderchest 2 air
