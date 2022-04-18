@@ -9,13 +9,12 @@ function API/asset/toggle_sync
 scoreboard players reset playerdummy playercount
 execute @a ~~~ scoreboard players add playerdummy playercount 1
 
+##an example on a lag clear function that goes off of how many entities are in the world
+function API/packages/entitycount
+
 ###This is a XP Orb auto collect.
 ###Sending them to the closest player instead of letting them sit there relieves the entity count a bit.
 execute @s ~~~ execute @e[r=150,type=xp_orb] ~~~ tp @s[type=xp_orb] @p
-
-###This makes sure everyone doesn't get flagged for c-logging when the module is first turned on
-###As the only other thing that resets their in_combat is the timer c-log timer
-scoreboard players set @a[scores={clmtoggle=0}] in_combat 0
 
 ## This will execute a function on a player who is rejoining
 execute @a[scores={online=0}] ~~~ function API/packages/playerjoined

@@ -138,6 +138,8 @@ scoreboard objectives add totemtog dummy
 scoreboard objectives add armtoggle dummy
 scoreboard objectives add in_combat dummy
 scoreboard objectives add combat_timer dummy
+scoreboard objectives add afkm dummy
+scoreboard objectives add afktimer dummy
 scoreboard objectives add online dummy
 scoreboard objectives add is_sleeping dummy
 scoreboard objectives add invcheck dummy

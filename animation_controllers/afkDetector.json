@@ -35,7 +35,7 @@
 						}
 					],
 					"on_entry": [
-						"/execute @s[scores={afkm=1}] ~~~ scoreboard players add @s[tag=!staffstatus] afktimer 1", 
+						"/execute @s[scores={afkm=1}] ~~~ scoreboard players add @s afktimer 1", 
 						"/execute @s[scores={afktimer=2350}] ~~~ tellraw @s {\"rawtext\":[{\"text\":\"§¶§cUAC §6AFK Kick §b► §d\"},{\"selector\":\"@s\"},{\"text\":\" §¶§bRemoved for inactivity in §7: §c4\"}]}",
 						"/execute @s[scores={afktimer=2380}] ~~~ tellraw @s {\"rawtext\":[{\"text\":\"§¶§cUAC §6AFK Kick §b► §d\"},{\"selector\":\"@s\"},{\"text\":\" §¶§bRemoved for inactivity in §7: §c3\"}]}",
 						"/execute @s[scores={afktimer=2420}] ~~~ tellraw @s {\"rawtext\":[{\"text\":\"§¶§cUAC §6AFK Kick §b► §d\"},{\"selector\":\"@s\"},{\"text\":\" §¶§bRemoved for inactivity in §7: §c2\"}]}",

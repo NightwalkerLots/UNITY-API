@@ -1,4 +1,6 @@
-gamerule doentitydrops false
+##instead of killing the mobs, we instead just despawn them by changing the gamemode quickly
+##this way they do not drop even more entities by being killed, because we are instead despawning them.
+
 difficulty peaceful
 kill @e[type=minecraft:arrow]
 kill @e[type=minecraft:polar_bear]

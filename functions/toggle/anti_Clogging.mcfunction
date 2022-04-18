@@ -27,5 +27,5 @@ execute @s[scores={clmtoggle=3}] ~~~ scoreboard players operation @a clmtoggle =
 #tellraw @a[scores={has_xx=0,clmtoggle=2}] {"rawtext":[{"text":"§¶§cUNITY API §b► §6Experimental Features §7: §cNot Enabled §7|| §cThis module may not work!"}]}
 
 
-execute @s~~~ execute @s ~~~ playsound note.pling @s ~ ~ ~
+playsound note.pling @s ~ ~ ~
 

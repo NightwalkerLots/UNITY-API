@@ -6,9 +6,10 @@ scoreboard players remove @s[scores={tp_cooldown=1..}] tp_cooldown 1
 
 ##Calls apon other API functions and also acts as a timer for the 6_seconds
 scoreboard players add @s ticktimer 1
-execute @s[scores={ticktimer=1}] ~~~ execute @r[scores={ltmtoggle=1}] ~~~ function API/packages/entitycount
 execute @s[scores={ticktimer=150..}] ~~~ function API/ticking_functions/6_seconds
-execute @s[scores={in_combat=1,clmtoggle=1..2}] ~~~ function API/packages/combatlogger
+execute @s[scores={in_combat=1}] ~~~ function API/packages/combatlogger
+
+
 
 
 ###Below is code for a time-played tracker for the player

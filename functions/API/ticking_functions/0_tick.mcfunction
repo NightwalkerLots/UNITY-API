@@ -6,7 +6,5 @@
 kill @e[type=moving_block]
 
 
-
-
 #This hides this from the in-game function command directory
 hide
