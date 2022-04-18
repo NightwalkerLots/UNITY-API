@@ -1,3 +1,5 @@
+##particle asset which can be used for special effects
+
 particle minecraft:eyeofender_death_explode_particle  ~ ~2 ~
 particle minecraft:eyeofender_death_explode_particle  ~ ~1 ~
 particle minecraft:eyeofender_death_explode_particle  ~ ~2 ~

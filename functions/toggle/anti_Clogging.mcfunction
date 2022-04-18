@@ -1,4 +1,5 @@
 ## This is a example on how to code a toggle. We like to call it a add-switch
+## The toggle sync asset function is used to then sync everyone to this toggle state
 
 ## We add a score in the objective responsible for the toggle, and them we make sure that we copy our score to a dummy
 execute @s ~~~ scoreboard players add clmdummy clmtoggle 1

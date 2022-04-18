@@ -1,6 +1,8 @@
-##instead of killing the mobs, we instead just despawn them by changing the gamemode quickly
-##this way they do not drop even more entities by being killed, because we are instead despawning them.
+##this is a asset file ran by the manaul lag clear command
+##having the real command run another function with the real code is a fix for when a function will now show
+##in the in-game command autocomplete. Which was the case for this one
 
+gamerule doentitydrops false
 difficulty peaceful
 kill @e[type=minecraft:arrow]
 kill @e[type=minecraft:polar_bear]

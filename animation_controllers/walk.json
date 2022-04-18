@@ -162,16 +162,6 @@
 					"on_entry": [
 						"/scoreboard players set @s Player_Facing 5"
 					]
-				},
-				"down": {
-					"transitions": [
-						{
-							"default": "(1.0)"
-						}
-					],
-					"on_entry": [
-						"/scoreboard players set @s Player_Facing 0"
-					]
 				}
 			}
 		},

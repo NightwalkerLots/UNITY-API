@@ -1,3 +1,6 @@
+##particle asset which can be used for special effects
+
+
 particle minecraft:camera_shoot_explosion  ~ ~2 ~
 particle minecraft:camera_shoot_explosion  ~ ~1 ~
 particle minecraft:camera_shoot_explosion  ~ ~2 ~

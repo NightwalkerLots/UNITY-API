@@ -1,0 +1,46 @@
+{
+    //This number should NOT be changed in any file. 1.16.100 allows you to use experimental modes, such as running commands from events.
+    //This number can not be higher than the most up to date Minecraft version, do not make up your own numbers
+    "format_version": "1.16.100",
+    "minecraft:entity": {  //DO NOT CHANGE, this is how Minecraft recognizes the file as an entity
+        "description": { //This just defines the description
+            "identifier": "minecraft:silverfish", //This is the entity's identifier
+            "is_spawnable": true, //Bool, decides if the entity will spawn naturally 
+            "is_summonable": true, //Bool, decides if the entity can be summoned
+            "is_experimental": false //Bool, decides if the entity is experimental and needs the modes enabled to work
+        },
+        "components": { //Starts the components, this is different from component groups
+            "minecraft:health": { //This is the entities health component
+                "value": 10, //Value the entity stars with 
+                "max": 10 //Max health value the entity can have. This can also be defined as "min"
+            },
+            "minecraft:collision_box": { //This is the area the entity can be interacted with, these are the default values for the player
+                "height": 0.6, //Height of the collision box
+                "width": 1.8 //Width of the collision box
+            },
+            "minecraft:movement": { //This is how fast the entity will move
+                "value": 0 //Its changed to 0 in here to stop it from moving at all
+            },
+            "minecraft:type_family": { //This component sets the entities family types, these can be used to run commands like "/execute @e[family=custom_family] ..."
+                "family": [ "mob","custom_family" ] //There are native Minecraft family types, but you can also make your own
+            },
+            "minecraft:pushable": { //This decides if the entity will be pushable or not
+                "is_pushable": false, //Bool, tells if the entity is pushable by other entities, explosions, etc
+                "is_pushable_by_piston": false //Bool, tells if the entity is pushable by pistons
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "deals_damage": false //Bool, 
+                    }
+                ]
+            },
+            "minecraft:inventory": {
+                "container_type": "inventory", //Defines what type of container the entity will have
+                "container_size": 27, //Changes the size of the entities inventory, won't change from 27 unless you edit the UI as well
+                "restrict_to_owner": false, //Bool, 
+                "can_be_siphoned_from": false //Bool, 
+            }
+        }
+    }
+}

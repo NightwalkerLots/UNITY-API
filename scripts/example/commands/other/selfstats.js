@@ -17,7 +17,7 @@ Server.command.register(registerInformation, (chatmsg, args) => {
         const { sender } = chatmsg;
         const name = sender.getName();
         let cmdUsage = ['get', 'player'];
-        const ComStringStats = `function API/itemcommand/playerstats`;
+        const ComStringStats = `function API/asset/playerstats`;
         const PlayerArgString = {
             one: Server.player.find(`${args[1]}`),
             two: Server.player.find(`${args[1]} ${args[2]}`),
@@ -25,10 +25,10 @@ Server.command.register(registerInformation, (chatmsg, args) => {
             four: Server.player.find(`${args[1]} ${args[2]} ${args[3]} ${args[4]}`),
         };
         const PlayerStringStats = {
-            one: `execute "${args[1]}" ~~~ function API/itemcommand/playerstats`,
-            two: `execute "${args[1]} ${args[2]}" ~~~ function API/itemcommand/playerstats`,
-            three: `execute "${args[1]} ${args[2]} ${args[3]}" ~~~ function API/itemcommand/playerstats`,
-            four: `execute "${args[1]} ${args[2]} ${args[3]} ${args[4]}" ~~~ function API/itemcommand/playerstats`
+            one: `execute "${args[1]}" ~~~ function API/asset/playerstats`,
+            two: `execute "${args[1]} ${args[2]}" ~~~ function API/asset/playerstats`,
+            three: `execute "${args[1]} ${args[2]} ${args[3]}" ~~~ function API/asset/playerstats`,
+            four: `execute "${args[1]} ${args[2]} ${args[3]} ${args[4]}" ~~~ function API/asset/playerstats`
         };
         if (sender.scoreTest('icmtoggle') === 0) {
             return sender.tellraw(`§¶§cUNITY API §b► §c§lThe Realm Owner currently has Player Commands Disabled`);

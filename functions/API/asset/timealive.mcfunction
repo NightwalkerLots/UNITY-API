@@ -1,3 +1,6 @@
+##This is ran on the player via the manual stats command to return the time the player last died in real time
+##More messages can be added for longer life spans, using a tick calculator is recommended
+
 #Prints the current player's time played score
 execute @s[scores={timealive=0..59999}] ~~~ tellraw @a {"rawtext":[{"text":"§¶§cUNITY API §b► §d"},{"selector":"@s"},{"text":"§b has died over a hour ago"}]}
 execute @s[scores={timealive=60000..120000}] ~~~ tellraw @a {"rawtext":[{"text":"§¶§cUNITY API §b► §d"},{"selector":"@s"},{"text":"§b has died over a hour ago"}]}

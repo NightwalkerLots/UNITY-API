@@ -1,3 +1,6 @@
+##this function can be used to lock a player's inventory
+##this isn't used in the API, but is a good tool to use just in-case
+
 replaceitem entity @s slot.inventory 0 nether_star 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"},"minecraft:keep_on_death":{}}
 replaceitem entity @s slot.inventory 1 nether_star 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"},"minecraft:keep_on_death":{}}
 replaceitem entity @s slot.inventory 2 nether_star 1 0 {"minecraft:item_lock":{"mode":"lock_in_inventory"},"minecraft:keep_on_death":{}}

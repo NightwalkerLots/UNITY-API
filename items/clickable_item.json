@@ -1,10 +1,13 @@
 {
+    //This number should NOT be changed in any file. 1.16.100 allows you to use experimental modes, such as running commands from events.
+    //This number can not be higher than the most up to date Minecraft version, do not make up your own numbers
     "format_version": "1.16.100",
     "minecraft:item": {
         "description": {
             //This is how the item will be called in commands, not the name you see when hovering over it in your inventory
             //For an example of how it'd be used /give @s uac:clickable_item
             "identifier": "uac:clickable_item",
+            //Sets the category the item will be stored in the creative menu
             "category": "items"
         },
         "components": {
